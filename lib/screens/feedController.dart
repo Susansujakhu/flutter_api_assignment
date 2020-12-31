@@ -19,11 +19,12 @@ class FeedController extends GetxController {
     Center(
       child: CircularProgressIndicator(),
     ),
+    Text("Hello World")
   ];
 
   List<Widget> get cards => _cards;
   List<Widget> tempList = List();
-  int i = 0;
+  int l = 0;
   init() async {
     await _loadCards();
 
@@ -31,16 +32,18 @@ class FeedController extends GetxController {
   }
 
   Future<void> _loadCards() async {
-    i++;
-    if (i > 1) {
+    l++;
+    if (l > 1) {
       tempList.removeLast();
     }
 
-    List<Movie> modelList = await API.fetchPost(i);
-    print(modelList.length);
+    List<Movie> modelList = await API.fetchPost(l);
+    //print(modelList.length);
     for (int i = 0; i < modelList.length; i++) {
       //print(modelList[i].title);
       //print(modelList[i].year);
+
+      //print(len);
       FeedModel model = FeedModel(
           id: modelList[i].id,
           title: modelList[i].title,
@@ -72,7 +75,7 @@ class FeedController extends GetxController {
 
     //load();
 
-    print(i);
+    print(l);
 
     return true;
   }
